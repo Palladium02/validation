@@ -1,7 +1,8 @@
 interface Operations {
-  string?: () => Operations;
-  number?: () => Operations;
-  boolean?: () => Operations;
+  string: () => Operations;
+  number: () => Operations;
+  boolean: () => Operations;
+  array: () => Operations;
   final?: () => boolean;
 }
 
@@ -20,6 +21,10 @@ function v(value: any): Operations {
     },
     boolean: () => {
       if(typeof v !== "boolean") isMatch = false;
+      return operations;
+    },
+    array: () => {
+      if(!Array.isArray(v)) isMatch = false;
       return operations;
     },
     final: () => {
