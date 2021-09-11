@@ -1,36 +1,32 @@
-interface Operations {
-  string: () => Operations;
-  number: () => Operations;
-  boolean: () => Operations;
-  array: () => Operations;
-  final?: () => boolean;
+import vString, { S } from "./string";
+import vNumber, { N } from "./number";
+import vBoolean, { B } from "./boolean";
+import vArray, { A } from './array';
+
+interface V {
+  string: () => S;
+  number: () => N;
+  boolean: () => B;
+  array: () => A;
 }
 
-function v(value: any): Operations {
+function v(value: any): V {
   let v: any = value;
-  let isMatch: boolean = true;
 
-  let operations: Operations = {
+  let operations: V = {
     string: () => {
-      if(typeof v !== "string") isMatch = false;
-      return operations;
+      return vString(v);
     },
     number: () => {
-      if(typeof v !== "number") isMatch = false;
-      return operations;
+      return vNumber(v);
     },
     boolean: () => {
-      if(typeof v !== "boolean") isMatch = false;
-      return operations;
+      return vBoolean(v);
     },
     array: () => {
-      if(!Array.isArray(v)) isMatch = false;
-      return operations;
-    },
-    final: () => {
-      return isMatch;
+      return vArray(v);
     }
-  }
+  };
 
   return operations;
 }
