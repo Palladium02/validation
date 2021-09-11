@@ -5,6 +5,10 @@
   "author": "Sean Meyer",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "test": "ts-node ./test/index.test.ts",
+    "build": "tsc -p ./tsconfig.json"
+  },
   "devDependencies": {
     "@types/node": "^16.9.1",
     "prettier": "^2.4.0",
